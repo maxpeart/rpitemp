@@ -1,9 +1,19 @@
 # rpitemp
 logs cpu temperature to firebase (be warned I've no idea what I'm doing)
 
-## to build:
+## to run locally
 
 `./install.sh`
+
+set environment variables:
+* DATABASE_URL
+* SERVICE_ACCOUNT
+* INTERVAL
+* HOST_NAME
+
+`./temp.py`
+
+## to build docker image:
 
 `docker build -t maxpeart/rpitemp .`
 
