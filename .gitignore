@@ -99,3 +99,9 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# firebase secrets
+/*firebase-admin*
+
+# .vscode
+.vscode

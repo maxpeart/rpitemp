@@ -91,3 +91,9 @@ venv/
 */*.swp
 */*/*.swp
 */*/*/*.swp
+
+# firebase secret
+/*firebase-admin*
+
+# vscode
+.vscode
