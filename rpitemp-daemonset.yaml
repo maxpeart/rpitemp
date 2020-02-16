@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: rpitemp-deployment
+  labels:
+    app: rpitemp
+spec:
+  selector:
+    matchLabels:
+      name: rpitemp
+  template:
+    metadata:
+      labels:
+        name: rpitemp
+    spec: 
+      tolerations:
+        - key: "node-role.kubernetes.io/master"
+          effect: "NoSchedule"
+          operator: "Exists"
+      containers:
+      - name: rpitemp
+        image: maxpeart/rpitemp
+        env:
+          - name: DATABASE_URL
+            value: <DATABASE_URL>
+          - name: SERVICE_ACCOUNT
+            value: "/firebase/config.json"
+          - name: INTERVAL
+            value: "60"
+          - name: HOST_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+        volumeMounts:
+          - name: rpitemp-persistent-storage
+            mountPath: /firebase
+      terminationGracePeriodSeconds: 30            
+      volumes:
+        - name: rpitemp-persistent-storage
+          persistentVolumeClaim:
+            claimName: rpitemp-pvc            
