@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: rpitemp-deployment
+  name: rpitemp-daemonset
   labels:
     app: rpitemp
 spec:
